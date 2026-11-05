@@ -12,8 +12,9 @@
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg1:#efeaff;--bg2:#d9e4ff;--card:rgba(255,255,255,.75);--text:#1d1747;--sub:#5d5792}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
-body{background:radial-gradient(circle at 50% 0%,var(--bg1),var(--bg2));color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif;display:flex;align-items:center;justify-content:center;touch-action:none;user-select:none}
-.app{width:min(94vw,380px)}
+body{background:radial-gradient(circle at 50% 0%,var(--bg1),var(--bg2));color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif;display:flex;align-items:center;justify-content:center;user-select:none;overflow-y:auto}
+body.menu{touch-action:pan-y}body.game{touch-action:none}
+.app{width:min(94vw,380px);margin:auto;padding:12px 0 40px}
 [hidden]{display:none!important}
 h1{text-align:center;margin:0 0 4px;font-size:30px}
 .sub{text-align:center;color:var(--sub);margin:0 0 18px;font-size:14px}
@@ -41,7 +42,7 @@ canvas{display:block;width:100%}
 .u{grid-column:2}.l{grid-column:1;grid-row:2}.d{grid-column:2;grid-row:2}.r{grid-column:3;grid-row:2}.f{grid-column:3;grid-row:1}
 .pill{padding:6px 8px}.pill b{font-size:18px}.top{gap:6px}#mm{position:absolute;left:8px;top:8px;width:84px;height:84px;border-radius:10px;box-shadow:0 0 0 1px rgba(255,255,255,.3)}#toast{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);background:rgba(10,8,30,.85);color:#fff;padding:8px 16px;border-radius:999px;font-size:14px;white-space:nowrap}.shop{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.shop button{flex:1 1 30%;border:0;border-radius:12px;padding:9px 4px;font:600 13px inherit;font-family:inherit;background:var(--card);color:var(--text)}.shop .on{background:linear-gradient(135deg,var(--acc2),#4cc9ff);color:#fff}.shop .off{opacity:.5}.card.pic{flex-direction:column;align-items:stretch;padding:0;overflow:hidden;gap:0}.card.pic svg{display:block;width:100%}.card.pic div{padding:12px 16px}textarea{width:100%;border-radius:14px;border:0;padding:10px;background:var(--card);color:var(--text);font:13px monospace;user-select:text;-webkit-user-select:text;touch-action:auto}</style>
 </head>
-<body>
+<body class="menu">
 <div class="app">
   <div id="menu">
     <svg viewBox="0 0 360 150" style="width:100%;border-radius:22px;display:block;margin-bottom:14px" role="img" aria-label="تصویر بازی">
@@ -277,12 +278,12 @@ const War={w:360,h:420,
   m.fillStyle='#4cc9ff';m.beginPath();m.arc(T(p.x),T(p.z),3,0,7);m.fill()}};
 
 applyMod();
-$('modb').onclick=()=>{const p=$('modp');p.hidden=!p.hidden;$('modt').value=Object.keys(MOD).length?JSON.stringify(MOD):''};
+$('modb').onclick=()=>{const p=$('modp');p.hidden=!p.hidden;if(!p.hidden)setTimeout(()=>p.scrollIntoView({block:'center',behavior:'smooth'}),50);$('modt').value=Object.keys(MOD).length?JSON.stringify(MOD):''};
 $('moda').onclick=()=>{try{const o=JSON.parse($('modt').value.replace(/[“”]/g,'"'));if(!o||typeof o!=='object')throw 0;MOD=o;try{localStorage.setItem('mod',JSON.stringify(o))}catch(e){}applyMod();$('modm').textContent='✅ مود اعمال شد. بازی رو شروع کن'}catch(e){$('modm').textContent='❌ کد اشتباهه. دوباره از من بگیر'}};
 $('modr').onclick=()=>{MOD={};try{localStorage.removeItem('mod')}catch(e){}applyMod();$('modt').value='';$('modm').textContent='مود پاک شد'};
-function open(g){G=g==='snake'?Snake:War;$('c').hidden=G===War;$('mm').hidden=$('shop').hidden=$('p3').hidden=$('p4').hidden=G!==War;$('c3').hidden=G!==War;$('c3').style.aspectRatio='360/420';
+function open(g){document.body.className='game';G=g==='snake'?Snake:War;$('c').hidden=G===War;$('mm').hidden=$('shop').hidden=$('p3').hidden=$('p4').hidden=G!==War;$('c3').hidden=G!==War;$('c3').style.aspectRatio='360/420';
  for(const k in held)held[k]=false;$('menu').hidden=true;$('game').hidden=false;G.init()}
-function close(){G=null;$('game').hidden=true;$('menu').hidden=false}
+function close(){document.body.className='menu';G=null;$('game').hidden=true;$('menu').hidden=false}
 $('back').onclick=close;
 $('go').onclick=()=>G&&G.start();
 document.querySelectorAll('.card').forEach(b=>b.onclick=()=>open(b.dataset.g));
