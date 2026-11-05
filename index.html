@@ -51,6 +51,30 @@ canvas{display:block;width:100%}
 .rcb button{width:84px;height:84px;border-radius:50%;border:2px solid rgba(255,255,255,.6);background:rgba(255,255,255,.18);color:#fff;font-size:30px;touch-action:none}.rcb button:active{background:rgba(255,255,255,.4)}
 #nb{width:104px!important;height:104px!important;background:rgba(50,224,255,.35)!important}
 #rc3{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:90px;font-weight:900;color:#fff;text-shadow:0 4px 20px #000;pointer-events:none}
+:root{--glass:rgba(255,255,255,.13);--gb:rgba(255,255,255,.3);--text:#f3f0ff;--sub:#c4bdf0;--card:rgba(255,255,255,.12)}
+body{color:#f3f0ff;background:radial-gradient(900px 560px at 8% -8%,rgba(122,92,255,.9),transparent 60%),radial-gradient(800px 520px at 105% 12%,rgba(0,214,180,.65),transparent 58%),radial-gradient(900px 640px at 50% 112%,rgba(255,77,121,.6),transparent 58%),#0b0a1f}
+.pill,.back,.pad button,.shop button,.seg,.card,textarea{background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(170%);backdrop-filter:blur(16px) saturate(170%);border:1px solid var(--gb);box-shadow:0 8px 28px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4)}
+.pad button:active,.shop button:active,.back:active{background:rgba(255,255,255,.32)}
+.shop .on{background:linear-gradient(135deg,rgba(123,92,255,.85),rgba(76,201,255,.85))}
+.seg button.on{background:linear-gradient(135deg,#7b5cff,#4cc9ff);box-shadow:0 4px 14px rgba(123,92,255,.5)}
+h1{font-size:34px;background:linear-gradient(90deg,#fff,#a8ecff,#ffc2d9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{transition:transform .15s;border-radius:24px}.card i{filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
+#game{position:fixed;inset:0;z-index:50;background:radial-gradient(900px 600px at 50% 0%,#2a1d6e,#0b0a1f)}
+#game .board{position:absolute;inset:0;border-radius:0;box-shadow:none;display:flex;align-items:center;justify-content:center}
+#game .top{position:absolute;left:12px;right:12px;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:5;margin:0}
+#c{width:min(100vw,calc(100vh - 270px));height:auto;aspect-ratio:1/1;border-radius:18px}
+#c3{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important}
+#game .pad{position:absolute;left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:5;margin:0}
+#game .shop{position:absolute;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 150px);z-index:5;margin:0}
+#game .ov{z-index:4}#mm{top:84px;z-index:3}#toast{z-index:6}
+.rcb button,#rx,#rgx,.gl,#rgi{-webkit-backdrop-filter:blur(12px) saturate(170%);backdrop-filter:blur(12px) saturate(170%);border:1px solid rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 20px rgba(0,0,0,.35)}
+#rv.garage .rh,#rv.garage .rcb,#rv.garage #rx{display:none}
+#rg{position:absolute;inset:0;pointer-events:none}#rg>*{pointer-events:auto}
+#rgi{position:absolute;left:18px;top:18px;width:min(38%,300px);padding:14px 16px;border-radius:20px;color:#fff;background:rgba(255,255,255,.14)}
+#rgi h3{margin:0 0 8px;font-size:22px}.st{display:flex;align-items:center;gap:8px;font-size:13px;margin:7px 0}.st span{width:58px}.st i{flex:1;height:8px;border-radius:5px;background:rgba(255,255,255,.22);overflow:hidden}.st b{display:block;height:100%;background:linear-gradient(90deg,#32e0ff,#7b5cff)}
+.gl{position:absolute;bottom:24px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:26px}#rgl{left:calc(50% - 90px)}#rgr{left:calc(50% + 20px)}
+#rgs0{position:absolute;bottom:24px;right:24px;padding:16px 30px;border:0;border-radius:999px;font:700 18px inherit;font-family:inherit;color:#07261c;background:linear-gradient(135deg,#2de2a6,#7af0ff);box-shadow:0 8px 24px rgba(45,226,166,.5)}
+#rgx{position:absolute;top:16px;right:16px;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:18px}
 </style>
 </head>
 <body class="menu">
@@ -69,7 +93,7 @@ canvas{display:block;width:100%}
     <div class="seg" id="seg"><button data-v="e">آسان</button><button data-v="m" class="on">متوسط</button><button data-v="h">سخت</button></div>
     <button class="card" data-g="snake"><i>🐍</i><div><b>مار</b><span>قلب بخور و بزرگ شو. با ۲۰ قلب ظاهر مار عوض می‌شه</span></div></button>
     <button class="card pic" data-g="war"><svg viewBox="0 0 360 120" role="img" aria-label="تصویر دفاع از قبیله"><defs><linearGradient id="nk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1033"/><stop offset="1" stop-color="#5a3a6a"/></linearGradient></defs><rect width="360" height="120" fill="url(#nk)"/><circle cx="305" cy="30" r="16" fill="#fff4c2"/><circle cx="60" cy="20" r="1.5" fill="#fff"/><circle cx="150" cy="35" r="1.5" fill="#fff"/><circle cx="230" cy="15" r="1.5" fill="#fff"/><rect y="92" width="360" height="28" fill="#1f4a2c"/><g fill="#c9a36b"><rect x="40" y="66" width="38" height="28"/><rect x="150" y="72" width="30" height="22"/><rect x="250" y="68" width="34" height="26"/></g><g fill="#8b4a2b"><polygon points="34,68 59,44 84,68"/><polygon points="145,74 165,54 185,74"/><polygon points="244,70 267,48 290,70"/></g><circle cx="112" cy="90" r="5" fill="#ff7a1a"/><path d="M20 30L120 62" stroke="#ff9a3c" stroke-width="3" stroke-dasharray="6 4"/><circle cx="120" cy="62" r="5" fill="#ff4422"/><g fill="#7fb069"><circle cx="205" cy="84" r="7"/><rect x="199" y="90" width="12" height="20" rx="3"/><circle cx="320" cy="86" r="7"/><rect x="314" y="92" width="12" height="20" rx="3"/></g><g fill="#f33"><circle cx="203" cy="83" r="1.3"/><circle cx="207" cy="83" r="1.3"/></g></svg><div><b>🧟 دفاع از قبیله ۳بعدی</b><span>خونه‌ها، محافظ، اسلحه، موشک، تخت‌خواب و پول</span></div></button>
-    <button class="card" data-g="race"><i>🏎️</i><div><b>مسابقه‌ی ماشین ۳بعدی</b><span>لاین عوض کن، ماشین‌ها رو رد کن و سکه جمع کن</span></div></button>
+    
     <button class="card pic" id="raceb"><svg viewBox="0 0 360 120" role="img" aria-label="مسابقه"><defs><linearGradient id="rk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a3d9a"/><stop offset="1" stop-color="#ff9a5a"/></linearGradient></defs><rect width="360" height="120" fill="url(#rk)"/><circle cx="180" cy="62" r="24" fill="#ffe9a8"/><rect y="62" width="360" height="58" fill="#4a6b3a"/><polygon points="150,62 210,62 330,120 30,120" fill="#2b2e36"/><g stroke="#fff" stroke-width="3" stroke-dasharray="8 8"><line x1="180" y1="64" x2="180" y2="120"/></g><g stroke="#7af0ff" stroke-width="2" opacity=".8"><line x1="20" y1="40" x2="70" y2="40"/><line x1="290" y1="30" x2="340" y2="30"/><line x1="10" y1="80" x2="60" y2="80"/></g><rect x="150" y="88" width="60" height="18" rx="5" fill="#e63946"/><rect x="160" y="78" width="40" height="14" rx="4" fill="#1b2733"/><circle cx="160" cy="108" r="6" fill="#111"/><circle cx="200" cy="108" r="6" fill="#111"/><ellipse cx="180" cy="112" rx="10" ry="4" fill="#32e0ff"/></svg><div><b>🏎 مسابقه ۳بعدی</b><span>نیتروژن، رقیب، ترافیک و خط پایان. گوشی رو افقی بگیر</span></div></button>
     <button class="card" id="modb"><i>🧩</i><div><b>مود</b><span>با یه کد، بازی رو تغییر بده</span></div></button>
     <div id="modp" hidden><textarea id="modt" rows="5" dir="ltr" spellcheck="false" placeholder='{"startMoney":1000,"rocketCost":500}'></textarea>
@@ -98,7 +122,8 @@ canvas{display:block;width:100%}
 <div class="rcb l"><button data-k="l">◀</button><button data-k="r">▶</button></div>
 <div class="rcb r"><button data-k="b">⏹</button><button data-k="n" id="nb">🔥</button></div>
 <div id="rc3"></div>
-<div class="ov" id="rov"><h2 id="rt"></h2><p id="rm"></p><button id="rgo">شروع</button></div></div></div>
+<div id="rg" hidden><div id="rgi"><h3 id="rgn"></h3><div id="rgst"></div></div><button class="gl" id="rgl">◀</button><button class="gl" id="rgr">▶</button><button id="rgs0">شروع مسابقه 🏁</button><button id="rgx">✕</button></div>
+<div class="ov" id="rov" hidden><h2 id="rt"></h2><p id="rm"></p><button id="rgo">شروع</button><button id="rgar" hidden>🚗 گاراژ</button></div></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 const $=id=>document.getElementById(id),cv=$('c'),x=cv.getContext('2d');
@@ -210,7 +235,8 @@ const War={w:360,h:420,
   this.pm=mkChar('p');sc.add(this.pm);this.mm=$('mm').getContext('2d');
   $('shop').onclick=e=>{const b=e.target.closest('button');if(b)this.buy(b.dataset.k)};
  },
- init(){if(!this.sc)this.build();this.hi=best('war');$('l1').textContent='کشته‌ها';$('l2').textContent='جان من';$('l3').textContent='خانه‌ها';$('l4').textContent='پول';$('fb').hidden=false;this.reset();this.state='idle';
+ fit(){const w=innerWidth,h=innerHeight;this.r.setSize(w,h,false);this.cam.aspect=w/h;this.cam.updateProjectionMatrix();this.asp=w/h},
+ init(){if(!this.sc)this.build();this.fit();this.hi=best('war');$('l1').textContent='کشته‌ها';$('l2').textContent='جان من';$('l3').textContent='خانه‌ها';$('l4').textContent='پول';$('fb').hidden=false;this.reset();this.state='idle';
   overlay('🧟 دفاع از قبیله','درجه: '+DN[diff]+' — ◀▲▼▶ حرکت، لمس صفحه یا 🔫 شلیک. با پول اسلحه و محافظ بخر، کنار تخت بخواب تا جون و خونه‌ها برگردن','شروع')},
  reset(){[...(this.en||[]),...(this.bl||[]),...(this.al||[]),...(this.fx||[])].forEach(o=>this.sc.remove(o.m));
   this.hs.forEach(h=>{h.max=(h.m0||(h.m0=h.max))*mo('houseHp',1);h.hp=h.max;h.m.scale.y=1});
@@ -234,7 +260,7 @@ const War={w:360,h:420,
  key(k,d){held[k]=d},
  ptr(type,px,py){
   if(type==='up'){this.fire=false;return}
-  const rc=new THREE.Raycaster(),pt=new THREE.Vector3();rc.setFromCamera(new THREE.Vector2(px/360*2-1,-(py/420*2-1)),this.cam);
+  const rc=new THREE.Raycaster(),pt=new THREE.Vector3();rc.setFromCamera(new THREE.Vector2(px*2-1,-(py*2-1)),this.cam);
   if(rc.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),0),pt)){this.fire=true;this.aim={x:pt.x,z:pt.z}}},
  shoot(x,z,f,w){for(let i=0;i<w.pl;i++){const a=f+(Math.random()-.5)*2*w.sd,sn=Math.sin(a),cs=Math.cos(a),m=new THREE.Mesh(BG,w.rk?RM:BM);m.position.y=1.5;if(w.rk)m.scale.setScalar(1.9);this.sc.add(m);
   this.bl.push({m,x:x+sn*1.4,z:z+cs*1.4,vx:sn*w.sp,vz:cs*w.sp,life:w.life,dm:w.dm,rk:w.rk})}},
@@ -288,7 +314,7 @@ const War={w:360,h:420,
   if(this.php<=0)this.end('کشته شدی 💀');else if(th<=0)this.end('قبیله سقوط کرد 🏚');
  },
  draw(){
-  const p=this.pp,m=this.mm;this.cam.position.set(p.x,13,p.z+11);this.cam.lookAt(p.x,0,p.z-3);
+  const p=this.pp,m=this.mm;const k=Math.min(1.8,Math.max(1,.86/(this.asp||.86)));this.cam.position.set(p.x,13*k,p.z+11*k);this.cam.lookAt(p.x,0,p.z-3*k);
   if(this.hurt>0)this.sc.background.set(0xd9908f);else this.sc.background.set(this.night?0x10162b:0x9ad0ff);
   this.r.render(this.sc,this.cam);
   m.clearRect(0,0,96,96);m.fillStyle='rgba(10,15,25,.65)';m.fillRect(0,0,96,96);const T=v=>48+v*1.7;
@@ -298,12 +324,17 @@ const War={w:360,h:420,
   this.al.forEach(a=>{m.fillStyle='#2de2a6';m.fillRect(T(a.x)-1.5,T(a.z)-1.5,3,3)});
   m.fillStyle='#4cc9ff';m.beginPath();m.arc(T(p.x),T(p.z),3,0,7);m.fill()}};
 
-const WG=new THREE.CylinderGeometry(.38,.38,.32,12);
-function mkRCar(c,sc){const g=new THREE.Group();bx(2,.55,4.2,c,0,.55,0,g);bx(1.7,.5,2.1,0x1b2733,0,1.05,.25,g);bx(1.9,.1,.55,c,0,1.2,1.85,g);bx(1.7,.12,.12,0xff2233,0,.75,2.12,g);bx(.5,.14,.1,0xfff6c0,-.65,.65,-2.12,g);bx(.5,.14,.1,0xfff6c0,.65,.65,-2.12,g);
- g.wh=[[-1,.38,1.35],[1,.38,1.35],[-1,.38,-1.35],[1,.38,-1.35]].map(p=>{const w=new THREE.Mesh(WG,mt(0x111111));w.rotation.z=Math.PI/2;w.position.set(p[0],p[1],p[2]);g.add(w);return w});
+const WG=new THREE.CylinderGeometry(.38,.38,.32,14),RG=new THREE.CylinderGeometry(.25,.25,.34,10);
+function mkWheel(){const w=new THREE.Group(),t=new THREE.Mesh(WG,mt(0x0b0b0b));t.rotation.z=Math.PI/2;w.add(t);
+ const rm=new THREE.Mesh(RG,mt(0xb8c0cc));rm.rotation.z=Math.PI/2;w.add(rm);
+ for(let i=0;i<10;i++){const a=i*Math.PI/5,b=new THREE.Mesh(gm(.34,.05,.14),mt(0x5a5a5a));b.position.set(0,Math.cos(a)*.38,Math.sin(a)*.38);b.rotation.x=a;w.add(b)}
+ for(let i=0;i<3;i++){const sp=new THREE.Mesh(gm(.36,.07,.46),mt(0xeef2f8));sp.rotation.x=i*Math.PI/3;w.add(sp)}return w}
+function mkRCar(c,sc){const g=new THREE.Group();g.paint=[bx(2,.55,4.2,c,0,.55,0,g)];bx(1.7,.5,2.1,0x1b2733,0,1.05,.25,g);g.paint.push(bx(1.9,.1,.55,c,0,1.2,1.85,g));bx(1.7,.12,.12,0xff2233,0,.75,2.12,g);bx(.5,.14,.1,0xfff6c0,-.65,.65,-2.12,g);bx(.5,.14,.1,0xfff6c0,.65,.65,-2.12,g);
+ g.wh=[[-1,.38,1.35],[1,.38,1.35],[-1,.38,-1.35],[1,.38,-1.35]].map(p=>{const w=mkWheel();w.position.set(p[0],p[1],p[2]);g.add(w);return w});
  if(sc)g.scale.set(1,sc,sc);return g}
-function ov(t,m,b){$('rt').textContent=t;$('rm').textContent=m;$('rgo').textContent=b;$('rov').hidden=false}
+function ov(t,m,b,g){$('rt').textContent=t;$('rm').textContent=m;$('rgo').textContent=b;$('rgar').hidden=!g;$('rov').hidden=false}
 const LN=[-3.6,0,3.6],RK={ArrowLeft:'l',a:'l',ArrowRight:'r',d:'r',ArrowDown:'b',s:'b',ArrowUp:'n',w:'n',' ':'n'};
+const CARS=[{n:'رعد قرمز',c:0xe63946,sp:1,nt:1,ct:.8},{n:'طوفان آبی',c:0x2b6cff,sp:.97,nt:1.35,ct:.9},{n:'طلای سریع',c:0xffc107,sp:1.08,nt:.9,ct:.7},{n:'شبح مشکی',c:0x23232b,sp:1.14,nt:1.1,ct:.6},{n:'سبز لیزری',c:0x1fd18a,sp:1.02,nt:1.2,ct:1}];
 const R={on:false,h:{},state:'idle',tr:[],pk:[],op:[],
  build(){
   const T=THREE,sc=this.sc=new T.Scene(),c=0xf0a070;
@@ -332,28 +363,33 @@ const R={on:false,h:{},state:'idle',tr:[],pk:[],op:[],
  open(){
   if(!this.sc)this.build();$('menu').hidden=true;$('race').hidden=false;document.body.className='game';this.on=true;
   try{const e=document.documentElement;e.requestFullscreen&&e.requestFullscreen().then(()=>screen.orientation&&screen.orientation.lock&&screen.orientation.lock('landscape').catch(()=>{})).catch(()=>{})}catch(e){}
-  this.layout();this.reset();this.state='idle';
-  ov('🏎 مسابقه ۳بعدی','گوشی رو افقی بگیر (به سمت چپ بچرخونش). ◀▶ فرمون، ⏹ ترمز، 🔥 نیتروژن. تا خط پایان '+this.L+' متر!','شروع');
+  this.layout();try{this.sel=+localStorage.getItem('carSel')||0}catch(e){this.sel=0}this.garage();
   this.last=performance.now();requestAnimationFrame(t=>this.loop(t))},
  close(){this.on=false;$('race').hidden=true;$('menu').hidden=false;document.body.className='menu';try{document.fullscreenElement&&document.exitFullscreen()}catch(e){}},
  reset(){[...this.tr,...this.pk].forEach(o=>this.sc.remove(o.m));this.tr=[];this.pk=[];
   this.p={x:0,v:0,d:0,yaw:0,nit:50};this.t=0;this.cnt=3;this.crash=0;this.shake=0;this.st=1;this.sp=5;this.rank=1;this.L=mo('raceLength',3000);
   [12,6,18].forEach((d,i)=>{const o=this.op[i];o.d=d;o.x=o.tx=[-3.6,3.6,0][i]});$('rc3').textContent=''},
- start(){this.reset();$('rov').hidden=true;this.state='count'},
+ start(){this.reset();$('rov').hidden=true;$('rg').hidden=true;$('rv').classList.remove('garage');this.state='count'},
+ garage(){this.state='garage';$('rov').hidden=true;$('rg').hidden=false;$('rv').classList.add('garage');this.reset();this.paint()},
+ paint(){const C=CARS[this.sel]||CARS[0];this.car.paint.forEach(m=>m.material=mt(C.c));$('rgn').textContent=C.n;
+  const bar=(l,v)=>'<div class="st"><span>'+l+'</span><i><b style="width:'+Math.max(8,Math.min(100,v))+'%"></b></i></div>';
+  $('rgst').innerHTML=bar('سرعت',(C.sp-.8)/.4*100)+bar('نیتروژن',(C.nt-.7)/.8*100)+bar('کنترل',C.ct*100);try{localStorage.setItem('carSel',this.sel)}catch(e){}},
+ pick(d){this.sel=(this.sel+d+CARS.length)%CARS.length;this.paint()},
  flash(c){const e=$('rv');e.classList.add(c);setTimeout(()=>e.classList.remove(c),350)},
  finish(){this.state='done';let rk=1,b=0;this.op.forEach(o=>{if(o.d>=this.L)rk++});
   try{const k='b_race'+diff,old=+localStorage.getItem(k)||0;if(rk==1&&(!old||this.t<old))localStorage.setItem(k,this.t.toFixed(1));b=+localStorage.getItem(k)||0}catch(e){}
-  ov(rk==1?'🏆 اول شدی!':'مقام '+rk+' از ۴','زمان: '+this.t.toFixed(1)+' ثانیه'+(b?' — بهترین: '+b:''),'دوباره')},
+  ov(rk==1?'🏆 اول شدی!':'مقام '+rk+' از ۴','زمان: '+this.t.toFixed(1)+' ثانیه'+(b?' — بهترین: '+b:''),'دوباره',1)},
  loop(t){if(!this.on)return;const dt=Math.min(50,t-this.last);this.last=t;this.update(dt);this.r.render(this.sc,this.cam);requestAnimationFrame(t=>this.loop(t))},
  update(dt){
   const s=dt/1000,D={e:{tr:1.6,ai:.86},m:{tr:1.15,ai:.94},h:{tr:.8,ai:1.03}}[diff],P=this.p,h=this.h;let boost=false;
+  if(this.state==='garage'){this.ga=(this.ga||0)+s*.7;this.cam.fov=50;this.cam.updateProjectionMatrix();this.cam.position.set(Math.sin(this.ga)*7.5,2.8,Math.cos(this.ga)*7.5);this.cam.lookAt(0,.8,0);this.car.position.x=0;this.car.rotation.y=0;this.op.forEach(o=>o.m.visible=false);this.sl.forEach(m=>m.visible=false);this.fl.visible=false;return}
   if(this.state==='count'){this.cnt-=s;$('rc3').textContent=Math.ceil(this.cnt);if(this.cnt<=0){this.state='go';$('rc3').textContent='GO!';setTimeout(()=>$('rc3').textContent='',700)}}
   if(this.state==='go'){
-   this.t+=s;const mv=52*mo('carSpeed',1);boost=!!h.n&&P.nit>0;
-   const tg=boost?mv*1.42*mo('nitroPower',1):mv;
+   this.t+=s;const C=CARS[this.sel]||CARS[0],mv=52*mo('carSpeed',1)*C.sp;boost=!!h.n&&P.nit>0;
+   const tg=boost?mv*1.42*mo('nitroPower',1)*(1+(C.nt-1)*.6):mv;
    if(h.b)P.v=Math.max(8,P.v-42*s);else{const df=tg-P.v;P.v+=Math.sign(df)*Math.min(Math.abs(df),(boost?32:15)*s)}
    P.nit=boost?Math.max(0,P.nit-24*s):Math.min(100,P.nit+4*s);
-   const dx=(h.r?1:0)-(h.l?1:0);P.x=clamp(P.x+dx*(7+P.v*.05)*s,-4.3,4.3);P.yaw+=(-dx*.28-P.yaw)*Math.min(1,8*s);
+   const dx=(h.r?1:0)-(h.l?1:0);P.x=clamp(P.x+dx*(7+P.v*.05)*(.7+C.ct*.4)*s,-4.3,4.3);P.yaw+=(-dx*.28-P.yaw)*Math.min(1,8*s);
    P.d+=P.v*s;this.crash=Math.max(0,this.crash-s);
    this.st-=s;if(this.st<=0){this.st=D.tr*(.7+Math.random()*.6);const van=Math.random()<.25,m=mkRCar([0x3a86ff,0xffbe0b,0x8338ec,0x06d6a0,0xf8f9fa,0x6c757d][Math.random()*6|0],van?1.25:0),x=LN[Math.random()*3|0];m.position.set(x,0,-300);this.sc.add(m);this.tr.push({m,x,z:-300,v:16+Math.random()*14})}
    this.sp-=s;if(this.sp<=0){this.sp=7;const m=new THREE.Mesh(new THREE.BoxGeometry(.7,1.1,.7),new THREE.MeshBasicMaterial({color:0x32e0ff})),x=LN[Math.random()*3|0];m.position.set(x,1,-300);this.sc.add(m);this.pk.push({m,x,z:-300})}
@@ -370,8 +406,8 @@ const R={on:false,h:{},state:'idle',tr:[],pk:[],op:[],
     o.x+=clamp(o.tx-o.x,-3*s,3*s);if(o.d>P.d)rk++});
    this.rank=rk;if(P.d>=this.L)this.finish();
   }
-  this.op.forEach(o=>{const z=P.d-o.d;o.m.position.set(o.x,0,z);o.m.visible=z>-340&&z<30;o.m.rotation.y=clamp(o.tx-o.x,-1,1)*-.1;o.m.wh.forEach(w=>w.rotation.x+=50*s/.38)});
-  this.car.position.x=P.x;this.car.rotation.y=P.yaw;this.car.wh.forEach(w=>w.rotation.x+=P.v*s/.38);
+  this.op.forEach(o=>{const z=P.d-o.d;o.m.position.set(o.x,0,z);o.m.visible=z>-340&&z<30;o.m.rotation.y=clamp(o.tx-o.x,-1,1)*-.1;o.m.wh.forEach(w=>w.rotation.x+=Math.min(50/.38,14)*s)});
+  this.car.position.x=P.x;this.car.rotation.y=P.yaw;const sp2=Math.min(P.v/.38,14)*s;this.car.wh.forEach(w=>w.rotation.x+=sp2);
   this.fl.visible=boost;if(boost)this.fl.scale.z=.7+Math.random()*.8;
   this.sl.forEach(m=>{m.visible=boost;if(boost){m.position.z+=P.v*1.3*s;if(m.position.z>10){m.position.z-=70;m.position.x=P.x+(Math.random()-.5)*18;m.position.y=.3+Math.random()*5}}});
   this.shake=Math.max(0,this.shake-s);const k=this.shake*.25;
@@ -380,11 +416,11 @@ const R={on:false,h:{},state:'idle',tr:[],pk:[],op:[],
   $('rv').classList.toggle('boost',boost);
   $('rs').textContent=Math.round(P.v*3.6);$('rn').style.width=P.nit+'%';$('rp').textContent=this.rank+'/4';$('rd').textContent=Math.max(0,Math.round(this.L-P.d))+' m';
   this.dots[0].style.left=clamp(P.d/this.L,0,1)*100+'%';this.op.forEach((o,i)=>this.dots[i+1].style.left=clamp(o.d/this.L,0,1)*100+'%')}};
-$('raceb').onclick=()=>R.open();$('rx').onclick=()=>R.close();$('rgo').onclick=()=>R.start();
+$('raceb').onclick=()=>R.open();$('rgl').onclick=()=>R.pick(-1);$('rgr').onclick=()=>R.pick(1);$('rgs0').onclick=()=>R.start();$('rgx').onclick=()=>R.close();$('rgar').onclick=()=>R.garage();$('rx').onclick=()=>R.close();$('rgo').onclick=()=>R.start();
 document.querySelectorAll('#race [data-k]').forEach(b=>{const k=b.dataset.k;b.addEventListener('pointerdown',e=>{e.preventDefault();R.h[k]=true});['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>R.h[k]=false))});
 document.addEventListener('keydown',e=>{if(R.on&&RK[e.key]){e.preventDefault();R.h[RK[e.key]]=true}});
 document.addEventListener('keyup',e=>{if(R.on&&RK[e.key])R.h[RK[e.key]]=false});
-addEventListener('resize',()=>R.on&&R.layout());
+addEventListener('resize',()=>{R.on&&R.layout();G===War&&War.fit()});
 applyMod();
 $('modb').onclick=()=>{const p=$('modp');p.hidden=!p.hidden;if(!p.hidden)setTimeout(()=>p.scrollIntoView({block:'center',behavior:'smooth'}),50);$('modt').value=Object.keys(MOD).length?JSON.stringify(MOD):''};
 $('moda').onclick=()=>{try{const o=JSON.parse($('modt').value.replace(/[“”]/g,'"'));if(!o||typeof o!=='object')throw 0;MOD=o;try{localStorage.setItem('mod',JSON.stringify(o))}catch(e){}applyMod();$('modm').textContent='✅ مود اعمال شد. بازی رو شروع کن'}catch(e){$('modm').textContent='❌ کد اشتباهه. دوباره از من بگیر'}};
@@ -452,7 +488,7 @@ document.querySelectorAll('.pad button').forEach(b=>{
 const M={ArrowUp:'u',ArrowDown:'d',ArrowLeft:'l',ArrowRight:'r',w:'u',s:'d',a:'l',d:'r',' ':'f'};
 document.addEventListener('keydown',e=>{if(!G)return;const k=M[e.key];if(k){e.preventDefault();G.key(k,true)}else if(e.key==='Enter'&&G.state!=='play')G.start()});
 document.addEventListener('keyup',e=>{const k=M[e.key];if(G&&k)G.key(k,false)});
-function cp(e){const r=$('c3').getBoundingClientRect();return[(e.clientX-r.left)*360/r.width,(e.clientY-r.top)*420/r.height]}
+function cp(e){const r=$('c3').getBoundingClientRect();return[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height]}
 $('c3').addEventListener('pointerdown',e=>{if(G===War){const q=cp(e);War.ptr('down',q[0],q[1])}});
 $('c3').addEventListener('pointermove',e=>{if(G===War&&War.fire){const q=cp(e);War.ptr('move',q[0],q[1])}});
 ['pointerup','pointerleave','pointercancel'].forEach(ev=>$('c3').addEventListener(ev,()=>G===War&&War.ptr('up')));
