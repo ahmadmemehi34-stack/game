@@ -286,7 +286,7 @@ function open(g){document.body.className='game';G=g==='snake'?Snake:War;$('c').h
 function close(){document.body.className='menu';G=null;$('game').hidden=true;$('menu').hidden=false}
 $('back').onclick=close;
 $('go').onclick=()=>G&&G.start();
-document.querySelectorAll('.card').forEach(b=>b.onclick=()=>open(b.dataset.g));
+document.querySelectorAll('.card[data-g]').forEach(b=>b.onclick=()=>open(b.dataset.g));
 document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{diff=b.dataset.v;document.querySelectorAll('#seg button').forEach(c=>c.classList.toggle('on',c===b))});
 document.querySelectorAll('.pad button').forEach(b=>{
  b.addEventListener('pointerdown',e=>{e.preventDefault();G&&G.key(b.dataset.d,true)});
