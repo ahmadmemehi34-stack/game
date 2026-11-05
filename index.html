@@ -299,7 +299,7 @@ const War={w:360,h:420,
   m.fillStyle='#4cc9ff';m.beginPath();m.arc(T(p.x),T(p.z),3,0,7);m.fill()}};
 
 const WG=new THREE.CylinderGeometry(.38,.38,.32,12);
-function mkCar(c,sc){const g=new THREE.Group();bx(2,.55,4.2,c,0,.55,0,g);bx(1.7,.5,2.1,0x1b2733,0,1.05,.25,g);bx(1.9,.1,.55,c,0,1.2,1.85,g);bx(1.7,.12,.12,0xff2233,0,.75,2.12,g);bx(.5,.14,.1,0xfff6c0,-.65,.65,-2.12,g);bx(.5,.14,.1,0xfff6c0,.65,.65,-2.12,g);
+function mkRCar(c,sc){const g=new THREE.Group();bx(2,.55,4.2,c,0,.55,0,g);bx(1.7,.5,2.1,0x1b2733,0,1.05,.25,g);bx(1.9,.1,.55,c,0,1.2,1.85,g);bx(1.7,.12,.12,0xff2233,0,.75,2.12,g);bx(.5,.14,.1,0xfff6c0,-.65,.65,-2.12,g);bx(.5,.14,.1,0xfff6c0,.65,.65,-2.12,g);
  g.wh=[[-1,.38,1.35],[1,.38,1.35],[-1,.38,-1.35],[1,.38,-1.35]].map(p=>{const w=new THREE.Mesh(WG,mt(0x111111));w.rotation.z=Math.PI/2;w.position.set(p[0],p[1],p[2]);g.add(w);return w});
  if(sc)g.scale.set(1,sc,sc);return g}
 function ov(t,m,b){$('rt').textContent=t;$('rm').textContent=m;$('rgo').textContent=b;$('rov').hidden=false}
@@ -319,11 +319,11 @@ const R={on:false,h:{},state:'idle',tr:[],pk:[],op:[],
    if(Math.random()<.55){bx(.6,2,.6,0x6b4a2a,0,1,0,g);const k=new T.Mesh(new T.ConeGeometry(1.8,4.2,7),mt(0x2f7a3a));k.position.y=4;g.add(k)}
    else{const h=6+Math.random()*14;bx(4+Math.random()*3,h,4+Math.random()*3,PAL[i%5],0,h/2,0,g)}
    g.userData.s=s;g.position.set(s*(10+Math.random()*12),0,10-i*8);sc.add(g);this.pr.push(g)}
-  this.car=mkCar(0xe63946);sc.add(this.car);
+  this.car=mkRCar(0xe63946);sc.add(this.car);
   const fm=new T.MeshBasicMaterial({color:0xff9a2a});this.fl=new T.Group();
   [-.5,.5].forEach(x=>{const f=new T.Mesh(new T.ConeGeometry(.25,1.8,8),fm);f.rotation.x=Math.PI/2;f.position.set(x,.55,3.1);this.fl.add(f)});this.car.add(this.fl);
   this.sl=[];for(let i=0;i<28;i++){const m=new T.Mesh(new T.BoxGeometry(.04,.04,5),new T.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.55}));m.position.set((Math.random()-.5)*18,.3+Math.random()*5,-Math.random()*60);m.visible=false;sc.add(m);this.sl.push(m)}
-  [0x2b6cff,0xffd23f,0xf1f1f1].forEach((col,i)=>{const m=mkCar(col);sc.add(m);this.op.push({m,x:0,tx:0,d:0,t:0})});
+  [0x2b6cff,0xffd23f,0xf1f1f1].forEach((col,i)=>{const m=mkRCar(col);sc.add(m);this.op.push({m,x:0,tx:0,d:0,t:0})});
   this.dots=[];['#ff4d79','#2b6cff','#ffd23f','#fff'].forEach(c=>{const d=document.createElement('i');d.style.background=c;$('rprog').appendChild(d);this.dots.push(d)});
  },
  layout(){const W=innerWidth,H=innerHeight,po=W<H,w=po?H:W,h=po?W:H,s=$('rv').style;
@@ -355,7 +355,7 @@ const R={on:false,h:{},state:'idle',tr:[],pk:[],op:[],
    P.nit=boost?Math.max(0,P.nit-24*s):Math.min(100,P.nit+4*s);
    const dx=(h.r?1:0)-(h.l?1:0);P.x=clamp(P.x+dx*(7+P.v*.05)*s,-4.3,4.3);P.yaw+=(-dx*.28-P.yaw)*Math.min(1,8*s);
    P.d+=P.v*s;this.crash=Math.max(0,this.crash-s);
-   this.st-=s;if(this.st<=0){this.st=D.tr*(.7+Math.random()*.6);const van=Math.random()<.25,m=mkCar([0x3a86ff,0xffbe0b,0x8338ec,0x06d6a0,0xf8f9fa,0x6c757d][Math.random()*6|0],van?1.25:0),x=LN[Math.random()*3|0];m.position.set(x,0,-300);this.sc.add(m);this.tr.push({m,x,z:-300,v:16+Math.random()*14})}
+   this.st-=s;if(this.st<=0){this.st=D.tr*(.7+Math.random()*.6);const van=Math.random()<.25,m=mkRCar([0x3a86ff,0xffbe0b,0x8338ec,0x06d6a0,0xf8f9fa,0x6c757d][Math.random()*6|0],van?1.25:0),x=LN[Math.random()*3|0];m.position.set(x,0,-300);this.sc.add(m);this.tr.push({m,x,z:-300,v:16+Math.random()*14})}
    this.sp-=s;if(this.sp<=0){this.sp=7;const m=new THREE.Mesh(new THREE.BoxGeometry(.7,1.1,.7),new THREE.MeshBasicMaterial({color:0x32e0ff})),x=LN[Math.random()*3|0];m.position.set(x,1,-300);this.sc.add(m);this.pk.push({m,x,z:-300})}
    this.tr.forEach(t=>{t.z+=(P.v-t.v)*s;t.m.position.z=t.z;
     if(!t.dead&&this.crash<=0&&Math.abs(t.x-P.x)<1.9&&Math.abs(t.z)<4.2){this.crash=1.2;P.v*=.4;this.shake=.5;t.dead=1;this.flash('hit')}
