@@ -75,9 +75,25 @@ h1{font-size:34px;background:linear-gradient(90deg,#fff,#a8ecff,#ffc2d9);-webkit
 .gl{position:absolute;bottom:24px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:26px}#rgl{left:calc(50% - 90px)}#rgr{left:calc(50% + 20px)}
 #rgs0{position:absolute;bottom:24px;right:24px;padding:16px 30px;border:0;border-radius:999px;font:700 18px inherit;font-family:inherit;color:#07261c;background:linear-gradient(135deg,#2de2a6,#7af0ff);box-shadow:0 8px 24px rgba(45,226,166,.5)}
 #rgx{position:absolute;top:16px;right:16px;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:18px}
-.logo{display:block;width:84%;max-width:320px;margin:0 auto 4px;filter:drop-shadow(0 0 16px rgba(90,255,60,.35))}</style>#rmodes{display:flex;gap:8px;margin-top:10px}#rmodes button{flex:1;padding:9px 4px;border-radius:12px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.14);color:#fff;font-family:inherit;font-size:13px}#rmodes .on{background:linear-gradient(135deg,#7b5cff,#4cc9ff)}
+.logo{display:block;width:84%;max-width:320px;margin:0 auto 4px;filter:drop-shadow(0 0 16px rgba(90,255,60,.35))}#rmodes{display:flex;gap:8px;margin-top:10px}#rmodes button{flex:1;padding:9px 4px;border-radius:12px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.14);color:#fff;font-family:inherit;font-size:13px}#rmodes .on{background:linear-gradient(135deg,#7b5cff,#4cc9ff)}
 #game.land .top{right:auto;width:min(520px,62%)}#game.land .pad{right:auto;width:200px;bottom:14px}#game.land .pad button{height:46px}
 #game.land .shop{left:auto;right:14px;bottom:14px;width:150px;flex-direction:column;flex-wrap:nowrap;max-height:calc(100% - 110px);overflow:auto}#game.land .shop button{flex:0 0 auto;padding:7px 4px;font-size:12px}
+#fb{position:absolute;z-index:5;right:24px;bottom:24px;width:calc(92px*var(--cs,1));height:calc(92px*var(--cs,1));border-radius:50%;font-size:calc(34px*var(--cs,1));color:#fff;background:rgba(255,80,110,.35);border:1px solid rgba(255,255,255,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 24px rgba(0,0,0,.35);touch-action:none}
+#fb:active{background:rgba(255,80,110,.65)}
+#game[data-fire="l"] #fb{right:auto;left:24px}
+#game[data-pad="l"][data-fire="l"] #fb{left:calc(190px*var(--cs,1) + 34px)}
+#game[data-pad="r"][data-fire="r"] #fb{right:calc(190px*var(--cs,1) + 34px)}
+#game.land .pad{width:calc(190px*var(--cs,1))}#game[data-pad="r"].land .pad{left:auto;right:14px}
+#game.land .pad button{height:auto;aspect-ratio:1/1;border-radius:50%}
+#setb,#cart{position:absolute;z-index:6;right:14px;width:48px;height:48px;border-radius:50%;color:#fff;font-size:22px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 18px rgba(0,0,0,.35)}
+#setb{top:10px}#cart{top:66px}
+#game .shop:not(.open){display:none}
+#game.land .shop{top:10px;right:74px;left:auto;bottom:auto;width:210px;max-height:calc(100% - 150px);flex-direction:column;flex-wrap:nowrap;overflow:auto;z-index:6;padding:8px;border-radius:20px;background:rgba(10,8,30,.45);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+#game.land .shop button{flex:0 0 auto;width:100%;display:flex;justify-content:space-between;align-items:center;padding:9px 10px;font-size:13px}.shop b{font-size:12px;opacity:.9}
+#set{position:absolute;z-index:8;left:50%;top:50%;transform:translate(-50%,-50%);width:min(88%,400px);padding:16px;border-radius:22px;color:#fff;background:rgba(10,8,30,.6);border:1px solid rgba(255,255,255,.3);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+#set h4{margin:0 0 10px;font-size:18px}#set .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0;font-size:14px}
+.seg2{display:flex;gap:6px}.seg2 button{padding:8px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;font-family:inherit;font-size:13px}.seg2 .on{background:linear-gradient(135deg,#7b5cff,#4cc9ff)}
+#setx{margin-top:8px;width:100%;padding:10px;border:0;border-radius:14px;font-family:inherit;font-weight:700;background:linear-gradient(135deg,#2de2a6,#7af0ff);color:#07261c}
 </style>
 </head>
 <body class="menu">
@@ -104,9 +120,15 @@ h1{font-size:34px;background:linear-gradient(90deg,#fff,#a8ecff,#ffc2d9);-webkit
     <div class="board"><canvas id="c" width="360" height="360"></canvas><canvas id="c3" width="360" height="420" hidden></canvas><canvas id="c4" width="360" height="420" hidden></canvas><canvas id="mm" width="96" height="96" hidden></canvas><div id="toast" hidden></div>
       <div class="ov" id="ov"><h2 id="t"></h2><p id="m"></p><button id="go">شروع</button></div></div>
     <div class="pad">
-      <button class="u" data-d="u" aria-label="بالا">▲</button><button class="f" id="fb" data-d="f" aria-label="شلیک">🔫</button>
+      <button class="u" data-d="u" aria-label="بالا">▲</button>
       <button class="l" data-d="l" aria-label="چپ">◀</button><button class="d" data-d="d" aria-label="پایین">▼</button><button class="r" data-d="r" aria-label="راست">▶</button>
     </div>
+    <button id="fb" hidden aria-label="شلیک">🔫</button><button id="setb" hidden aria-label="تنظیمات">⚙️</button><button id="cart" hidden aria-label="خرید">🛒</button>
+    <div id="set" hidden><h4>⚙️ تنظیمات دکمه‌ها</h4>
+     <div class="row"><span>دکمه‌های حرکت</span><div class="seg2" data-k="pad"><button data-v="l">چپ</button><button data-v="r">راست</button></div></div>
+     <div class="row"><span>دکمه‌ی شلیک</span><div class="seg2" data-k="fire"><button data-v="l">چپ</button><button data-v="r">راست</button></div></div>
+     <div class="row"><span>اندازه‌ی دکمه‌ها</span><div class="seg2" data-k="size"><button data-v="0.8">کوچک</button><button data-v="1">متوسط</button><button data-v="1.25">بزرگ</button></div></div>
+     <button id="setx">بستن</button></div>
     <div class="shop" id="shop" hidden></div>
   </div>
 </div>
@@ -232,19 +254,20 @@ const War={w:360,h:420,
  },
  fit(){const W=innerWidth,H=innerHeight,po=W<H,w=po?H:W,h=po?W:H;this.r.setSize(w,h,false);this.cam.aspect=w/h;this.cam.updateProjectionMatrix();this.asp=w/h},
  init(){if(!this.sc)this.build();this.fit();this.hi=best('war');$('l1').textContent='کشته‌ها';$('l2').textContent='جان من';$('l3').textContent='خانه‌ها';$('l4').textContent='پول';$('fb').hidden=false;this.reset();this.state='idle';
-  overlay('🧟 دفاع از قبیله','درجه: '+DN[diff]+' — گوشی رو افقی بگیر (به سمت چپ بچرخونش). ◀▲▼▶ حرکت، لمس صفحه یا 🔫 شلیک. با پول اسلحه و محافظ بخر، کنار تخت بخواب تا جون و خونه‌ها برگردن','شروع')},
+  overlay('🧟 دفاع از قبیله','درجه: '+DN[diff]+' — گوشی رو افقی بگیر (به سمت چپ بچرخونش). ◀▲▼▶ حرکت، لمس صفحه یا 🔫 شلیک. با پول از 🛒 اسلحه، سپر و پیرو بخر، کنار تخت بخواب تا جون و خونه‌ها برگردن','شروع')},
  reset(){[...(this.en||[]),...(this.bl||[]),...(this.al||[]),...(this.fx||[])].forEach(o=>this.sc.remove(o.m));
   this.hs.forEach(h=>{h.max=(h.m0||(h.m0=h.max))*mo('houseHp',1);h.hp=h.max;h.m.scale.y=1});
   this.en=[];this.bl=[];this.al=[];this.fx=[];this.pp={x:0,z:8};this.face=Math.PI;this.aim=null;this.fire=false;this.cd=0;this.sp=800;this.hurt=0;this.tt=0;
-  this.php=100;this.kills=0;this.money=mo('startMoney',100);this.own=[1,0,0,0];this.cur=0;this.day=1;this.sc_=0;this.lm=-1;this.setNight(false);for(let i=0;i<Math.min(4,Math.round(mo('startGuards',1)));i++)this.addAlly()},
+  this.php=100;this.shield=0;this.kills=0;this.money=mo('startMoney',100);this.own=[1,0,0,0];this.cur=0;this.day=1;this.sc_=0;this.lm=-1;this.setNight(false);for(let i=0;i<Math.min(4,Math.round(mo('startGuards',1)));i++)this.addAlly();this.shopUI();$('shop').classList.remove('open')},
  setNight(n){this.night=n;const c=n?0x10162b:0x9ad0ff;this.sc.background.set(c);this.sc.fog.color.set(c);this.sun.intensity=n?.25:1.1;this.hem.intensity=n?.35:.9},
  addAlly(){const m=mkChar('b'),p=this.pp;this.sc.add(m);this.al.push({m,x:p.x+2,z:p.z,f:0,cd:0})},
  toast(t){const e=$('toast');e.textContent=t;e.hidden=false;clearTimeout(this.tm);this.tm=setTimeout(()=>e.hidden=true,1800)},
- shopUI(){const m=this.money;$('shop').innerHTML=WP.map((w,i)=>`<button data-k="${i}" class="${this.cur==i?'on':''}${this.own[i]||m>=w.cost?'':' off'}">${w.e} ${w.n}${this.own[i]?'':' '+w.cost+'$'}</button>`).join('')+
-  `<button data-k="g" class="${m>=300&&this.al.length<4?'':'off'}">🛡 محافظ (${this.al.length}) 300$</button><button data-k="s">😴 خواب</button>`},
+ shopUI(){const m=this.money;$('shop').innerHTML=WP.map((w,i)=>'<button data-k="'+i+'" class="'+(this.cur==i?'on':'')+(this.own[i]||m>=w.cost?'':' off')+'">'+w.e+' '+w.n+'<b>'+(this.own[i]?(this.cur==i?'✔':'انتخاب'):w.cost+'$')+'</b></button>').join('')+
+  '<button data-k="sh" class="'+(m>=200?'':'off')+'">🛡 سپر (+۵۰)<b>200$</b></button><button data-k="g" class="'+(m>=300&&this.al.length<4?'':'off')+'">👥 پیرو/محافظ ('+this.al.length+')<b>300$</b></button><button data-k="s">😴 خواب<b>🛏</b></button>'},
  buy(k){
   if(this.state!=='play')return;
-  if(k=='g'){if(this.al.length>=4)return this.toast('حداکثر ۴ محافظ');if(this.money<300)return this.toast('پول کم داری');this.money-=300;this.addAlly()}
+  if(k=='sh'){if(this.money<200)return this.toast('پول کم داری');this.money-=200;this.shield=Math.min(100,this.shield+50);this.toast('🛡 سپر فعال شد')}
+  else if(k=='g'){if(this.al.length>=4)return this.toast('حداکثر ۴ محافظ');if(this.money<300)return this.toast('پول کم داری');this.money-=300;this.addAlly()}
   else if(k=='s'){const p=this.pp;if(this.sc_>0)return this.toast('هنوز خوابت نمی‌آد! '+Math.ceil(this.sc_)+' ثانیه');
    if(Math.hypot(p.x-BED.x,p.z-BED.z)>6)return this.toast('نزدیک تخت 🛏 برو');
    this.state='sleep';this.sl=2200;this.toast('😴 خوابیدی...')}
@@ -293,7 +316,7 @@ const War={w:360,h:420,
    const d=Math.hypot(tx-e.x,tz-e.z),far=d>tr;
    if(far){e.x+=(tx-e.x)/d*e.sp*s;e.z+=(tz-e.z)/d*e.sp*s}
    else if(th){th.hp-=4*s*hm;if(th.hp<=0){th.hp=0;th.m.scale.y=.25;this.toast('🏚 یه خونه خراب شد!')}}
-   else{this.php-=12*s*hm;this.hurt=200}
+   else{let dm=12*s*hm;if(this.shield>0){const ab=Math.min(this.shield,dm);this.shield-=ab;dm-=ab}this.php-=dm;this.hurt=200}
    e.m.position.set(e.x,0,e.z);e.m.rotation.y=Math.atan2(tx-e.x,tz-e.z);
    const q=far?Math.sin(this.tt*8+e.ph)*.6:0;e.m.lL.rotation.x=q;e.m.lR.rotation.x=-q});
   this.hurt=Math.max(0,this.hurt-dt);
@@ -304,7 +327,7 @@ const War={w:360,h:420,
   this.fx=this.fx.filter(f=>{f.t+=s;f.m.scale.setScalar(1+f.t*11);f.m.material.opacity=Math.max(0,.75-f.t*2.2);if(f.t>.35){this.sc.remove(f.m);return false}return true});
   this.en=this.en.filter(e=>!e.dead);
   const th=this.hs.reduce((a,h)=>a+h.hp,0),tm=this.hs.reduce((a,h)=>a+h.max,0);
-  set(this.kills,Math.max(0,Math.ceil(this.php))+'٪',Math.round(th/tm*100)+'٪',this.money+'$');
+  set(this.kills,Math.max(0,Math.ceil(this.php))+'٪'+(this.shield>0?' 🛡'+Math.ceil(this.shield):''),Math.round(th/tm*100)+'٪',this.money+'$');
   if(this.money!==this.lm){this.lm=this.money;this.shopUI()}
   if(this.php<=0)this.end('کشته شدی 💀');else if(th<=0)this.end('قبیله سقوط کرد 🏚');
  },
@@ -419,7 +442,10 @@ const R={on:false,mode:'race',h:{},state:'idle',tr:[],pk:[],op:[],
   $('rv').classList.toggle('boost',boost);
   $('rs').textContent=Math.round(P.v*3.6);$('rn').style.width=P.nit+'%';const cy=this.mode==='city';$('rp').textContent=cy?'🏙':this.rank+'/4';$('rd').textContent=cy?Math.round(P.d)+' m':Math.max(0,Math.round(this.L-P.d))+' m';$('rprog').style.display=cy?'none':'';
   this.dots[0].style.left=clamp(P.d/this.L,0,1)*100+'%';this.op.forEach((o,i)=>this.dots[i+1].style.left=clamp(o.d/this.L,0,1)*100+'%')}};
-$('raceb').onclick=()=>R.open();$('rgl').onclick=()=>R.pick(-1);$('rgr').onclick=()=>R.pick(1);$('rgs0').onclick=()=>R.start();$('rgx').onclick=()=>R.close();$('rgar').onclick=()=>R.garage();$('rm1').onclick=()=>R.setMode('race');$('rm2').onclick=()=>R.setMode('city');$('rx').onclick=()=>R.close();$('rgo').onclick=()=>R.start();
+$('raceb').onclick=()=>R.open();$('rgl').onclick=()=>R.pick(-1);$('rgr').onclick=()=>R.pick(1);$('rgs0').onclick=()=>R.start();$('rgx').onclick=()=>R.close();$('rgar').onclick=()=>R.garage();
+$('cart').onclick=()=>$('shop').classList.toggle('open');$('setb').onclick=()=>{$('set').hidden=!$('set').hidden};$('setx').onclick=()=>{$('set').hidden=true};
+document.querySelectorAll('.seg2 button').forEach(b=>b.onclick=()=>{CTL[b.parentNode.dataset.k]=b.dataset.v;try{localStorage.setItem('ctl',JSON.stringify(CTL))}catch(e){}applyCtl()});
+$('fb').addEventListener('pointerdown',e=>{e.preventDefault();G&&G.key('f',true)});['pointerup','pointerleave','pointercancel'].forEach(ev=>$('fb').addEventListener(ev,()=>G&&G.key('f',false)));$('rm1').onclick=()=>R.setMode('race');$('rm2').onclick=()=>R.setMode('city');$('rx').onclick=()=>R.close();$('rgo').onclick=()=>R.start();
 document.querySelectorAll('#race [data-k]').forEach(b=>{const k=b.dataset.k;b.addEventListener('pointerdown',e=>{e.preventDefault();R.h[k]=true});['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>R.h[k]=false))});
 document.addEventListener('keydown',e=>{if(R.on&&RK[e.key]){e.preventDefault();R.h[RK[e.key]]=true}});
 document.addEventListener('keyup',e=>{if(R.on&&RK[e.key])R.h[RK[e.key]]=false});
@@ -478,10 +504,13 @@ const Race={w:360,h:420,
   if(crash)this.end(sc)},
  draw(){const p=this.px;this.cam.position.set(p*.5,4.2,9);this.cam.lookAt(p*.4,1.2,-14);this.r.render(this.sc,this.cam)}};
 
+let CTL={pad:'l',fire:'r',size:'1'};try{Object.assign(CTL,JSON.parse(localStorage.getItem('ctl')||'{}'))}catch(e){}
+function applyCtl(){const g=$('game');g.dataset.pad=CTL.pad;g.dataset.fire=CTL.fire;g.style.setProperty('--cs',CTL.size);
+ document.querySelectorAll('.seg2').forEach(sg=>sg.querySelectorAll('button').forEach(b=>b.classList.toggle('on',String(CTL[sg.dataset.k])===b.dataset.v)))}
 function gameLayout(){const el=$('game'),W=innerWidth,H=innerHeight;
  if(G===War){const po=W<H,w=po?H:W,h=po?W:H;Object.assign(el.style,{inset:'auto',top:'0',left:po?W+'px':'0',width:w+'px',height:h+'px',transformOrigin:'top left',transform:po?'rotate(90deg)':'none'});el.classList.add('land')}
- else{el.style.cssText='';el.classList.remove('land')}}
-function open(g){document.body.className='game';G={snake:Snake,war:War,race:Race}[g];$('c').hidden=G!==Snake;$('c3').hidden=G!==War;$('c4').hidden=G!==Race;$('mm').hidden=$('shop').hidden=G!==War;$('p3').hidden=$('p4').hidden=G===Snake;$('c3').style.aspectRatio=$('c4').style.aspectRatio='360/420';
+ else{el.style.cssText='';el.classList.remove('land')}applyCtl()}
+function open(g){document.body.className='game';G={snake:Snake,war:War,race:Race}[g];$('c').hidden=G!==Snake;$('c3').hidden=G!==War;$('c4').hidden=G!==Race;$('mm').hidden=$('shop').hidden=$('cart').hidden=$('setb').hidden=G!==War;$('set').hidden=true;$('p3').hidden=$('p4').hidden=G===Snake;$('c3').style.aspectRatio=$('c4').style.aspectRatio='360/420';
  for(const k in held)held[k]=false;$('menu').hidden=true;$('game').hidden=false;gameLayout();G.init()}
 function close(){document.body.className='menu';G=null;$('game').style.cssText='';$('game').classList.remove('land');$('game').hidden=true;$('menu').hidden=false}
 $('back').onclick=close;
