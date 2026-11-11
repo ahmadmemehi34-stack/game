@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.ahmad.megagames",
+    "sha256_cert_fingerprints": ["83:D4:F4:2E:77:E6:DD:D7:F1:94:9B:22:85:FF:8D:63:57:4B:99:13:95:26:F3:0C:76:08:27:1D:16:5D:5E:5B"]
+  }
+}]
